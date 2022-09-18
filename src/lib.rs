@@ -21,6 +21,9 @@ pub async fn handler(request: Request) -> Result<Response, JsValue> {
 
         Response::new_with_opt_str_and_init(Some("Redirecting"), &init)
     } else {
-        todo!("404")
+        let mut init = ResponseInit::default();
+        init.status(404);
+
+        Response::new_with_opt_str_and_init(Some("Not found"), &init)
     }
 }

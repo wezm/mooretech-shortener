@@ -253,7 +253,7 @@ const imports = {
             throw new Error(getStringFromWasm0(arg0, arg1));
         },
         __wbindgen_closure_wrapper54: function(arg0, arg1, arg2) {
-            const ret = makeMutClosure(arg0, arg1, 23, __wbg_adapter_14);
+            const ret = makeMutClosure(arg0, arg1, 22, __wbg_adapter_14);
             return addHeapObject(ret);
         },
     },
