@@ -1,3 +1,5 @@
+extern crate core;
+
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
@@ -11,11 +13,7 @@ mod rewrite_map;
 fn main() {
     let path = Path::new(&env::var_os("OUT_DIR").unwrap()).join("map.rs");
     let mappings = fs::read_to_string("mappings.txt").expect("unable to read mappings.txt");
-    let mut mappings = rewrite_map::parse(&mappings).expect("error parsing mappings");
-
-    // Sort by key
-    mappings.sort_by_key(|entry| entry.0);
-
+    let mappings = rewrite_map::parse(&mappings).expect("error parsing mappings");
     write_output(&path, &mappings).expect("error writing output file");
 }
 
