@@ -1,4 +1,8 @@
-pub fn parse(txt: &str) -> Option<Vec<(&str, &str)>> {
+use url::Url;
+
+// Used by build.rs
+#[allow(unused)]
+pub fn parse(txt: &str) -> Option<Vec<(&str, Url)>> {
     let mut mappings = Vec::new();
     for line in txt.lines() {
         if line.starts_with('#') {
@@ -9,7 +13,11 @@ pub fn parse(txt: &str) -> Option<Vec<(&str, &str)>> {
         if let Some(idx) = value.find('#') {
             value = value[..idx].trim();
         }
-        mappings.push((key, value));
+
+        // Ensure destination URL is valid
+        let url: Url = value.parse().expect("invalid URL");
+
+        mappings.push((key, url));
     }
     Some(mappings)
 }
@@ -25,14 +33,17 @@ mod tests {
 
     #[test]
     fn test_mapping() {
-        assert_eq!(parse("test /here").unwrap(), vec![("test", "/here")]);
+        assert_eq!(
+            parse("test https://example.com/here").unwrap(),
+            vec![("test", "https://example.com/here".parse().unwrap())]
+        );
     }
 
     #[test]
     fn test_mapping_with_comment() {
         assert_eq!(
-            parse("test /here # comment").unwrap(),
-            vec![("test", "/here")]
+            parse("test https://example.com/here # comment").unwrap(),
+            vec![("test", "https://example.com/here".parse().unwrap())]
         );
     }
 }

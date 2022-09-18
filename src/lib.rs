@@ -4,6 +4,8 @@ use web_sys::{Headers, Request, Response, ResponseInit};
 
 include!(concat!(env!("OUT_DIR"), "/map.rs"));
 
+mod rewrite_map;
+
 #[wasm_bindgen]
 pub async fn handler(request: Request) -> Result<Response, JsValue> {
     console_error_panic_hook::set_once();

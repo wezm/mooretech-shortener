@@ -13,5 +13,8 @@ wasm-bindgen = "0.2.83"
 wasm-bindgen-futures = "0.4.33"
 web-sys = { version = "0.3.60", features = ["Headers", "Request", "RequestInit", "RequestMode", "Response", "ResponseInit"] }
 
+[build-dependencies]
+url = "2.3.1"
+
 [profile.release]
 lto = true

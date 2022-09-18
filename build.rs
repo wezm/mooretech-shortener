@@ -3,6 +3,8 @@ use std::io::Write;
 use std::path::Path;
 use std::{env, fs, io};
 
+use url::Url;
+
 #[path = "src/rewrite_map.rs"]
 mod rewrite_map;
 
@@ -17,11 +19,11 @@ fn main() {
     write_output(&path, &mappings).expect("error writing output file");
 }
 
-fn write_output(path: &Path, mappings: &[(&str, &str)]) -> Result<(), io::Error> {
+fn write_output(path: &Path, mappings: &[(&str, Url)]) -> Result<(), io::Error> {
     let mut f = File::create(&path).expect("unable to create output file");
     writeln!(f, "pub const MAPPINGS: &[(&str, &str)] = &[")?;
 
-    for (key, val) in mappings.iter().copied() {
+    for (key, val) in mappings.iter() {
         writeln!(f, r#"    ("{}", "{}"),"#, key, val)?;
     }
 
