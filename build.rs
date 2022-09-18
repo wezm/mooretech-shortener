@@ -9,7 +9,10 @@ mod rewrite_map;
 fn main() {
     let path = Path::new(&env::var_os("OUT_DIR").unwrap()).join("map.rs");
     let mappings = fs::read_to_string("mappings.txt").expect("unable to read mappings.txt");
-    let mappings = rewrite_map::parse(&mappings).expect("error parsing mappings");
+    let mut mappings = rewrite_map::parse(&mappings).expect("error parsing mappings");
+
+    // Sort by key
+    mappings.sort_by_key(|entry| entry.0);
 
     write_output(&path, &mappings).expect("error writing output file");
 }

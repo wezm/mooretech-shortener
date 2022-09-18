@@ -10,9 +10,11 @@ pub async fn handler(request: Request) -> Result<Response, JsValue> {
 
     // Determine the key from the url
     let url: Url = request.url().parse().unwrap();
+    let path = url.path();
 
     // Look it up in the rewrite map, return a redirect
-    if let Some((_key, destination)) = MAPPINGS.iter().find(|(key, _value)| *key == url.path()) {
+    if let Ok(idx) = MAPPINGS.binary_search_by_key(&path, |entry| entry.0) {
+        let (_, destination) = MAPPINGS[idx];
         let headers = Headers::new()?;
         headers.set("Location", destination)?;
 
