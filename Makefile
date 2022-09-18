@@ -1,6 +1,6 @@
 default: build/mooretech_shortener.js
 
-target/wasm32-unknown-unknown/release/mooretech_shortener.wasm: src/*.rs Cargo.toml
+target/wasm32-unknown-unknown/release/mooretech_shortener.wasm: src/*.rs Cargo.toml build.rs mappings.txt
 	cargo build --release --target wasm32-unknown-unknown
 
 build/mooretech_shortener.js: target/wasm32-unknown-unknown/release/mooretech_shortener.wasm
