@@ -1,1 +1,2 @@
 /test https://example.com/
+/test2 https://www.wezm.net/
