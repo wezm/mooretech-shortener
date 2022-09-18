@@ -1,3 +1,5 @@
+mod rewrite_map;
+
 use wasm_bindgen::prelude::*;
 use web_sys::{Request, Response};
 

@@ -1,15 +1,15 @@
-default: build/deno_rust_wasm.js
+default: build/mooretech_shortener.js
 
-target/wasm32-unknown-unknown/release/deno_rust_wasm.wasm: src/*.rs Cargo.toml
+target/wasm32-unknown-unknown/release/mooretech_shortener.wasm: src/*.rs Cargo.toml
 	cargo build --release --target wasm32-unknown-unknown
 
-build/deno_rust_wasm.js: target/wasm32-unknown-unknown/release/deno_rust_wasm.wasm
-	wasm-bindgen target/wasm32-unknown-unknown/release/deno_rust_wasm.wasm --target deno --out-dir build
+build/mooretech_shortener.js: target/wasm32-unknown-unknown/release/mooretech_shortener.wasm
+	wasm-bindgen target/wasm32-unknown-unknown/release/mooretech_shortener.wasm --target deno --out-dir build
 
-run: build/deno_rust_wasm.js
+run: build/mooretech_shortener.js
 	deno run --allow-read --allow-net --allow-env src/index.ts
 
-test: build/deno_rust_wasm.js
+test: build/mooretech_shortener.js
 	deno test --allow-read --allow-net tests/integration.ts
 
 .PHONY: run test
