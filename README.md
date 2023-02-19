@@ -1,9 +1,15 @@
-Deno Rust Wasm Template
-=======================
+MooreTech Shortener
+===================
 
-This is a template repository for a Rust project that is compiled to Wasm for
-[Deno]. Use it to build a project in Rust to run with Deno and deploy to
-[Deno Deploy].
+This is a URL shortener that I build for [my YouTube channel][mooretech]. It's
+implemented in Rust, which is compiled to WebAssembly for deployment to [Deno Deploy].
+
+I published two videos on writing the code and deploying it:
+
+* [Part 1](https://www.youtube.com/watch?v=d-tsfUVg4II)
+* [Part 2](https://www.youtube.com/watch?v=bQnab_6K1ok)
+
+The shortener is running at [tv.wezm.net](https://tv.wezm.net/).
 
 Usage
 -----
@@ -40,3 +46,4 @@ Automatic git integration. To do this there needs to be no build step so the
 [wasm-bindgen]: https://github.com/rustwasm/wasm-bindgen
 [Deno]: https://deno.land/
 [Deno Deploy]: https://deno.com/deploy
+[mooretech]: https://www.youtube.com/channel/UCLi0H57HGGpAdCkVOb_ykVg
