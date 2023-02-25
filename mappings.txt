@@ -1,3 +1,4 @@
 /test https://example.com/
 /test2 https://www.wezm.net/
 /2 https://www.youtube.com/watch?v=u1wfCnRINkE
+/usb-ttl https://www.banggood.com/custlink/Km3J2dtOi5
